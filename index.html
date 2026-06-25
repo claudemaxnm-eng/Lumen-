@@ -119,12 +119,16 @@ section{position:relative;z-index:2}
   position:relative;border-radius:22px;overflow:hidden;aspect-ratio:3/4;cursor:pointer;
   border:1px solid #1c1c22;
   background:linear-gradient(135deg,var(--c-cyan),var(--c-violet));
-  transition:transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s, opacity .4s;
   opacity:0;transform:translateY(40px);
+  min-height:280px;
+  -webkit-mask-image:-webkit-radial-gradient(circle,white 100%,black 100%);
 }
 .card.in{opacity:1;transform:translateY(0)}
+/* On touch devices skip the scroll-reveal hide so images are always visible */
+@media(hover:none){.card{opacity:1!important;transform:none!important;transition:none!important}}
 .card:hover{transform:translateY(-8px) scale(1.01)}
-.card .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s;background:#15151b}
+.card .shot{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;object-fit:cover;transition:transform .5s;background:#15151b;-webkit-transform:translateZ(0);transform:translateZ(0)}
 .card:hover .shot{transform:scale(1.06)}
 .card .swatch{position:absolute;inset:0;transition:transform .5s}
 .card:hover .swatch{transform:scale(1.06)}
